@@ -121,10 +121,16 @@ function transition(ele, img) {
 
 // fade in function
 function fadeIn(ele) {
-    element = document.querySelector(ele);
+    const element = document.querySelector(ele);
     element.style.opacity = "1";
     element.style.transition = "all 1s ease 0s";
+}
 
+// fade out function
+function fadeOut(ele) {
+    const element = document.querySelector(ele);
+    element.style.opacity = "0";
+    element.style.transition = "all 1s ease 0s";
 }
 
 // expand first section after 1.6 second of page load
@@ -134,12 +140,13 @@ setTimeout(function () {
     addImg(".iPhone", "./assets/img/iphone14-2.gif");
     // wait then move left
     setTimeout(function () {
-        // moveLeft(".iPhone");
-        // remove image after move left
+        setTimeout(function () {
+            fadeOut(".first_title");
+            fadeIn(".first_info");
+        }, 800);
         setTimeout(function () {
             removeImg(".iPhone");
             addImg(".iPhone", "./assets/img/iphone14_multi.png");
-            fadeIn(".first_info");
         }, 1000);
         // change image
     }, 3000);

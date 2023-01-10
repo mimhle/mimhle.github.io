@@ -151,6 +151,11 @@ html {
     overflow: hidden;
 }
 
+.main *{
+    text-decoration: none;
+    color: white;
+}
+
 .main{
     scroll-snap-type: y proximity;
     max-height: 100vh;
@@ -231,7 +236,7 @@ html {
     max-height: 25rem ;
     width: 100%;
     margin-top: 3rem;
-    /*float: left;*/
+    /*overflow: hidden;*/
 }
 
 .first_info {
@@ -240,7 +245,7 @@ html {
     align-items: center;
     justify-content: center;
     position: relative;
-    top: -26rem;
+    top: -29.9rem;
     left: 0;
     opacity: 0;
 }
@@ -260,4 +265,22 @@ html {
 .iPhone_features {
     margin-top: 2rem;
     list-style: none;
+}
+
+.first_info::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.first_info:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
