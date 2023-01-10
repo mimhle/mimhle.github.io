@@ -53,11 +53,13 @@ function reveal() {
         let height = content[i].parentElement.getBoundingClientRect().height;
         if (distance >= height * i - offset) {
             content[i].classList.add("show");
+            expand(content[i]);
             if (i - 1 >= 0) {
                 // content[i - 1].classList.remove("show");
             }
         } else {
             content[i].classList.remove("show");
+            collapse(content[i]);
         }
     }
 }
@@ -66,16 +68,34 @@ function reveal() {
 document.querySelector(".main").addEventListener("scroll", reveal);
 window.addEventListener("load", function () {
     document.querySelector(".first_section").classList.add("show");
+    setTimeout(function () {
+        document.querySelector(".first_section").classList.add("expand");
+        // add image after expand
+        addImg(".iPhone", "./assets/img/iphone14-2.gif");
+        // wait then move left
+        setTimeout(function () {
+            setTimeout(function () {
+                // fadeOut(".first_title");
+                fadeIn(".first_info");
+            }, 800);
+            setTimeout(function () {
+                removeImg(".iPhone");
+                addImg(".iPhone", "./assets/img/iphone14_multi.png");
+            }, 1000);
+            // change image
+        }, 3000);
+    }, 1600);
 });
 
 // expand element function
 function expand(ele) {
-    const element = document.querySelector(ele);
-    if (element.classList.contains("expand")) {
-        element.classList.remove("expand");
-    } else {
-        element.classList.add("expand");
-    }
+    // const element = document.querySelector(ele);
+    ele.classList.add("expand");
+}
+
+// collapse function
+function collapse(ele) {
+    ele.classList.remove("expand");
 }
 
 // move left function
@@ -132,25 +152,6 @@ function fadeOut(ele) {
     element.style.opacity = "0";
     element.style.transition = "all 1s ease 0s";
 }
-
-// expand first section after 1.6 second of page load
-setTimeout(function () {
-    expand(".first_section");
-    // add image after expand
-    addImg(".iPhone", "./assets/img/iphone14-2.gif");
-    // wait then move left
-    setTimeout(function () {
-        setTimeout(function () {
-            fadeOut(".first_title");
-            fadeIn(".first_info");
-        }, 800);
-        setTimeout(function () {
-            removeImg(".iPhone");
-            addImg(".iPhone", "./assets/img/iphone14_multi.png");
-        }, 1000);
-        // change image
-    }, 3000);
-}, 1600);
 
 
 
